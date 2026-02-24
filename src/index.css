@@ -1,5 +1,9 @@
+/* ===========================
+   Design Tokens (PIMEC 2025)
+   =========================== */
+
 :root {
-  /* PIMEC Brand Colors (2025 rebrand) */
+  /* Brand */
   --black: #000000;
   --white: #FFFFFF;
   --pi-blue: #7FC0DC;
@@ -10,9 +14,12 @@
   --pi-gray: #8592AB;
   --pi-bright-blue: #229ED9;
   --pi-gold: #E9C545;
+
+  /* WhatsApp */
   --whatsapp: #25D366;
   --whatsapp-dark: #128C7E;
 
+  /* Neutral */
   --bg-light: #FAFAFA;
   --bg-dark: #0A0A0A;
   --text-primary: #1A1A1A;
@@ -24,7 +31,7 @@
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Spacing */
+  /* Spacing (4px base) */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
@@ -32,12 +39,16 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
-  /* Border radius */
+  /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 24px;
   --radius-full: 9999px;
 }
+
+/* ===========================
+   Reset
+   =========================== */
 
 *,
 *::before,
@@ -49,7 +60,6 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
 }
 
 body {
@@ -66,24 +76,54 @@ h1, h2, h3, h4 {
   line-height: 1.2;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; font-family: var(--font-body); }
+img { max-width: 100%; display: block; }
 
-button {
-  cursor: pointer;
-  border: none;
-  font-family: var(--font-body);
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
+/* ===========================
+   Layout
+   =========================== */
 
 .container {
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 var(--space-sm);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+}
+
+/* ===========================
+   Shared: WhatsApp Button
+   =========================== */
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--whatsapp);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  transition: all 0.3s;
+  box-shadow: 0 4px 24px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+  background: var(--whatsapp-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.4);
+}
+
+@media (min-width: 768px) {
+  .btn-whatsapp {
+    font-size: 1.05rem;
+    padding: 16px 36px;
+  }
 }
