@@ -1,0 +1,127 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.field label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.field input,
+.field select {
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 16px; /* prevents iOS zoom */
+  color: var(--text-primary);
+  transition: border-color 0.2s;
+  outline: none;
+  background: var(--bg-light);
+  appearance: none;
+  width: 100%;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238592AB' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.field select.placeholder {
+  color: var(--pi-gray);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--pi-bright-blue);
+  background-color: var(--white);
+}
+
+.field input::placeholder {
+  color: var(--pi-gray);
+}
+
+.error {
+  font-size: 0.65rem;
+  color: var(--pi-coral);
+  font-weight: 500;
+}
+
+.apiError {
+  background: rgba(225, 120, 120, 0.08);
+  border: 1px solid var(--pi-coral);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  font-size: 0.75rem;
+  color: var(--pi-coral);
+  text-align: center;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.consent input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  flex-shrink: 0;
+  accent-color: var(--pi-bright-blue);
+}
+
+.consent span {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.consentError span {
+  color: var(--pi-coral);
+}
+
+.submit {
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 13px;
+  border-radius: var(--radius-full);
+  transition: all 0.2s;
+  margin-top: 4px;
+  width: 100%;
+}
+
+.submit:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

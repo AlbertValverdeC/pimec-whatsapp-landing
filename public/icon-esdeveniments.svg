@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="64" fill="#000"/>
+  <!-- Calendar body -->
+  <rect x="116" y="150" width="280" height="240" rx="24" fill="#FFB877"/>
+  <!-- Calendar top bar -->
+  <rect x="116" y="150" width="280" height="64" rx="24" fill="#E17878"/>
+  <rect x="116" y="190" width="280" height="24" fill="#E17878"/>
+  <!-- Rings -->
+  <rect x="192" y="126" width="16" height="48" rx="8" fill="#fff"/>
+  <rect x="304" y="126" width="16" height="48" rx="8" fill="#fff"/>
+  <!-- Date grid -->
+  <circle cx="192" cy="268" r="12" fill="rgba(0,0,0,0.15)"/>
+  <circle cx="256" cy="268" r="12" fill="rgba(0,0,0,0.15)"/>
+  <circle cx="320" cy="268" r="12" fill="rgba(0,0,0,0.15)"/>
+  <circle cx="192" cy="332" r="12" fill="rgba(0,0,0,0.15)"/>
+  <!-- Highlight day -->
+  <circle cx="256" cy="332" r="22" fill="#000"/>
+  <text x="256" y="340" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="700" fill="#FFB877">15</text>
+  <circle cx="320" cy="332" r="12" fill="rgba(0,0,0,0.15)"/>
+  <!-- Label -->
+  <text x="256" y="454" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="700" fill="rgba(255,255,255,0.5)">EVENTS</text>
+</svg>

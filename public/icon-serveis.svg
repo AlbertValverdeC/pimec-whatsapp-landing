@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="64" fill="#000"/>
+  <!-- Briefcase body -->
+  <rect x="120" y="190" width="272" height="180" rx="28" fill="#E9C545"/>
+  <!-- Briefcase handle -->
+  <rect x="200" y="152" width="112" height="50" rx="20" fill="none" stroke="#E9C545" stroke-width="14"/>
+  <!-- Briefcase stripe -->
+  <rect x="120" y="260" width="272" height="14" fill="rgba(0,0,0,0.12)"/>
+  <!-- Clasp -->
+  <rect x="240" y="248" width="32" height="38" rx="8" fill="#000" opacity="0.5"/>
+  <!-- Gear small -->
+  <circle cx="370" cy="150" r="36" fill="none" stroke="#7FC0DC" stroke-width="10"/>
+  <circle cx="370" cy="150" r="14" fill="#000"/>
+  <rect x="364" y="108" width="12" height="16" rx="4" fill="#7FC0DC"/>
+  <rect x="364" y="176" width="12" height="16" rx="4" fill="#7FC0DC"/>
+  <rect x="328" y="144" width="16" height="12" rx="4" fill="#7FC0DC"/>
+  <rect x="396" y="144" width="16" height="12" rx="4" fill="#7FC0DC"/>
+  <!-- Checkmark -->
+  <path d="M230 290 L252 312 L290 264" stroke="#000" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+  <!-- Label -->
+  <text x="256" y="445" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="700" fill="rgba(255,255,255,0.5)">SERVEIS</text>
+</svg>

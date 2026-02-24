@@ -6,7 +6,7 @@ export default function Header() {
     <header className={s.header}>
       <div className="container">
         <div className={s.inner}>
-          <div className={s.logo}>pimec</div>
+          <img src="/logo.jpg" alt="pimec" className={s.logo} />
           <a href="#topics" className={s.cta}>
             <WhatsAppIcon size={16} />
             Uneix-te

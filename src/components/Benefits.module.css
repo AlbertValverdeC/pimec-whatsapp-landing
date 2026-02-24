@@ -1,104 +1,58 @@
 .section {
-  padding: var(--space-xl) 0;
+  padding: var(--space-md) 0;
   background: var(--white);
-}
-
-.header {
-  text-align: center;
-  margin-bottom: var(--space-lg);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-sm);
-}
-
-.card {
-  padding: var(--space-md);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-  transition: all 0.3s;
-  position: relative;
+  border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
 
-.card:hover {
-  border-color: transparent;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.08);
-  transform: translateY(-4px);
+.track {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 var(--space-sm);
+  -webkit-overflow-scrolling: touch;
 }
 
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
+.track::-webkit-scrollbar {
+  display: none;
 }
 
-.card:nth-child(1)::before { background: var(--pi-apricot); }
-.card:nth-child(2)::before { background: var(--pi-blue); }
-.card:nth-child(3)::before { background: var(--pi-coral); }
-.card:nth-child(4)::before { background: var(--pi-periwinkle); }
-.card:nth-child(5)::before { background: var(--pi-mauve); }
-.card:nth-child(6)::before { background: var(--pi-gold); }
-
-.icon {
-  font-size: 1.75rem;
-  margin-bottom: var(--space-xs);
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-.card h3 {
-  font-family: var(--font-body);
-  font-size: 1rem;
+.emoji {
+  font-size: 1.2rem;
+}
+
+.label {
+  font-size: 0.8rem;
   font-weight: 600;
-  margin-bottom: 4px;
-  color: var(--black);
-}
-
-.card p {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
+  color: var(--text-primary);
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-md) 0;
   }
 
-  .header {
-    margin-bottom: var(--space-xl);
+  .track {
+    justify-content: center;
+    gap: var(--space-xl);
+    padding: 0 var(--space-md);
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
+  .emoji {
+    font-size: 1.3rem;
   }
 
-  .card {
-    padding: var(--space-lg);
-  }
-
-  .icon {
-    font-size: 2rem;
-    margin-bottom: var(--space-sm);
-  }
-
-  .card h3 {
-    font-size: 1.1rem;
-    margin-bottom: var(--space-xs);
-  }
-
-  .card p {
-    font-size: 0.9rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .label {
+    font-size: 0.85rem;
   }
 }

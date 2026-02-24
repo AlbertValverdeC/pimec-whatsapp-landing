@@ -1,17 +1,10 @@
 import { TESTIMONIALS } from '../data/content'
-import SectionHeader from './SectionHeader'
 import s from './Testimonials.module.css'
 
 export default function Testimonials() {
   return (
     <section className={s.section}>
       <div className="container">
-        <SectionHeader
-          className={s.header}
-          label="La comunitat parla"
-          title="El que diuen els nostres membres"
-        />
-
         <div className={s.grid}>
           {TESTIMONIALS.map((t) => (
             <div className={s.card} key={t.initials}>

@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import WhatsAppIcon from '../icons/WhatsAppIcon'
 import CheckIcon from '../icons/CheckIcon'
-import { TOPICS, WHATSAPP_LINK } from '../data/content'
-import SectionHeader from './SectionHeader'
+import { TOPICS } from '../data/content'
 import s from './Topics.module.css'
 
-export default function Topics() {
+export default function Topics({ onCtaClick }) {
   const [selected, setSelected] = useState([])
 
   const toggle = (id) => {
@@ -19,56 +18,41 @@ export default function Topics() {
   return (
     <section className={s.section} id="topics">
       <div className="container">
-        <SectionHeader
-          className={s.header}
-          label="Personalitza la teva experiència"
-          title="Quins temes t'interessen?"
-          subtitle="Selecciona els tòpics que més t'interessen i t'afegirem als grups de WhatsApp corresponents."
-        />
+        <h2 className={s.title}>Què t'interessa?</h2>
+        <p className={s.subtitle}>Escull i t'afegirem als grups</p>
 
         <div className={s.grid}>
           {TOPICS.map((topic) => (
-            <div
+            <button
               key={topic.id}
-              className={`${s.card} ${selected.includes(topic.id) ? s.selected : ''}`}
+              type="button"
+              className={`${s.chip} ${selected.includes(topic.id) ? s.selected : ''}`}
               onClick={() => toggle(topic.id)}
             >
-              <div className={s.check}>
+              <span className={s.check}>
                 <CheckIcon />
-              </div>
-              <div className={s.emoji}>{topic.emoji}</div>
-              <div className={s.info}>
-                <h4>{topic.name}</h4>
-                <p>{topic.desc}</p>
-              </div>
-            </div>
+              </span>
+              <span className={s.emoji}>{topic.emoji}</span>
+              {topic.name}
+            </button>
           ))}
         </div>
 
         <div className={s.action}>
-          <p className={s.count}>
-            {hasSelection ? (
-              <>
-                Has seleccionat <strong>{selected.length}</strong>{' '}
-                {selected.length === 1 ? 'tema' : 'temes'}
-              </>
-            ) : (
-              'Selecciona almenys un tema per continuar'
-            )}
-          </p>
-          <a
-            href={hasSelection ? WHATSAPP_LINK : undefined}
-            target="_blank"
-            rel="noopener noreferrer"
+          {hasSelection && (
+            <p className={s.count}>
+              <strong>{selected.length}</strong> {selected.length === 1 ? 'tema' : 'temes'}
+            </p>
+          )}
+          <button
+            type="button"
             className="btn-whatsapp"
-            onClick={(e) => !hasSelection && e.preventDefault()}
-            style={!hasSelection ? { opacity: 0.5, cursor: 'not-allowed' } : undefined}
+            onClick={() => hasSelection && onCtaClick(selected)}
+            style={!hasSelection ? { opacity: 0.4, cursor: 'not-allowed' } : undefined}
           >
             <WhatsAppIcon />
-            {hasSelection
-              ? 'Unir-me a la comunitat WhatsApp'
-              : 'Selecciona els teus temes'}
-          </a>
+            {hasSelection ? 'Unir-me ara' : 'Escull almenys un tema'}
+          </button>
         </div>
       </div>
     </section>
