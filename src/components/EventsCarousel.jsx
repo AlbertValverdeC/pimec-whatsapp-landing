@@ -2,10 +2,13 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 import { EVENTS, AGENDA_FILTER_URL } from '../data/content'
 import s from './EventsCarousel.module.css'
 
+const INTERVAL = 3000 // ms between auto-advances
+
 export default function EventsCarousel() {
   const trackRef = useRef(null)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
+  const timerRef = useRef(null)
 
   const checkScroll = useCallback(() => {
     const el = trackRef.current
@@ -26,10 +29,48 @@ export default function EventsCarousel() {
     }
   }, [checkScroll])
 
-  const scroll = (dir) => {
+  const scrollByCard = useCallback((dir) => {
     const el = trackRef.current
     if (!el) return
-    el.scrollBy({ left: dir * 300, behavior: 'smooth' })
+    const card = el.querySelector('[data-card]')
+    if (!card) return
+    const cardWidth = card.offsetWidth + 16 // card width + gap
+    el.scrollBy({ left: dir * cardWidth, behavior: 'smooth' })
+  }, [])
+
+  const startAutoPlay = useCallback(() => {
+    clearInterval(timerRef.current)
+    timerRef.current = setInterval(() => {
+      const el = trackRef.current
+      if (!el) return
+      const maxScroll = el.scrollWidth - el.clientWidth
+      if (el.scrollLeft >= maxScroll - 4) {
+        el.scrollTo({ left: 0, behavior: 'smooth' })
+      } else {
+        scrollByCard(1)
+      }
+    }, INTERVAL)
+  }, [scrollByCard])
+
+  const stopAutoPlay = useCallback(() => {
+    clearInterval(timerRef.current)
+  }, [])
+
+  const restartAutoPlay = useCallback(() => {
+    stopAutoPlay()
+    setTimeout(startAutoPlay, 3000)
+  }, [stopAutoPlay, startAutoPlay])
+
+  // Start auto-play on mount
+  useEffect(() => {
+    startAutoPlay()
+    return stopAutoPlay
+  }, [startAutoPlay, stopAutoPlay])
+
+  const handleManualScroll = (dir) => {
+    stopAutoPlay()
+    scrollByCard(dir)
+    restartAutoPlay()
   }
 
   return (
@@ -43,7 +84,7 @@ export default function EventsCarousel() {
           <div className={s.arrows}>
             <button
               className={s.arrow}
-              onClick={() => scroll(-1)}
+              onClick={() => handleManualScroll(-1)}
               disabled={!canScrollLeft}
               aria-label="Anterior"
             >
@@ -51,7 +92,7 @@ export default function EventsCarousel() {
             </button>
             <button
               className={s.arrow}
-              onClick={() => scroll(1)}
+              onClick={() => handleManualScroll(1)}
               disabled={!canScrollRight}
               aria-label="Següent"
             >
@@ -60,7 +101,12 @@ export default function EventsCarousel() {
           </div>
         </div>
 
-        <div className={s.track} ref={trackRef}>
+        <div
+          className={s.track}
+          ref={trackRef}
+          onTouchStart={stopAutoPlay}
+          onTouchEnd={restartAutoPlay}
+        >
           {EVENTS.map((ev, i) => (
             <a
               key={i}
@@ -68,6 +114,7 @@ export default function EventsCarousel() {
               target="_blank"
               rel="noopener noreferrer"
               className={s.card}
+              data-card
             >
               <span className={s.tag} style={{ background: ev.color }}>
                 {ev.tag}

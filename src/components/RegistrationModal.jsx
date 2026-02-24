@@ -22,8 +22,7 @@ export default function RegistrationModal({
   useEffect(() => {
     if (step !== 'success') return
     const t = setTimeout(() => {
-      window.open(WHATSAPP_LINK, '_blank')
-      closeModal()
+      window.location.href = WHATSAPP_LINK
     }, 1800)
     return () => clearTimeout(t)
   }, [step, closeModal])
