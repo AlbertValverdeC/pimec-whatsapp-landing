@@ -14,7 +14,7 @@ const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/
   navigator.userAgent
 )
 
-export default function App() {
+export default function LandingPage() {
   const flow = useRegistrationFlow()
 
   if (!isMobile) return <DesktopGate />

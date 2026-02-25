@@ -1,13 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { WHATSAPP_LINK } from '../data/content'
 import RegistrationForm from './RegistrationForm'
 import OtpInput from './OtpInput'
 import WhatsAppIcon from '../icons/WhatsAppIcon'
 import s from './RegistrationModal.module.css'
 
 export default function RegistrationModal({
-  isOpen, step, formData, isSubmitting, error,
+  isOpen, step, formData, isSubmitting, error, whatsappLink,
   closeModal, submitForm, submitOtp, resendOtp,
 }) {
   const overlayRef = useRef(null)
@@ -20,12 +19,12 @@ export default function RegistrationModal({
   }, [isOpen, closeModal])
 
   useEffect(() => {
-    if (step !== 'success') return
+    if (step !== 'success' || !whatsappLink) return
     const t = setTimeout(() => {
-      window.location.href = WHATSAPP_LINK
+      window.location.href = whatsappLink
     }, 1800)
     return () => clearTimeout(t)
-  }, [step, closeModal])
+  }, [step, whatsappLink])
 
   if (!isOpen) return null
 
@@ -70,7 +69,11 @@ export default function RegistrationModal({
               <WhatsAppIcon size={32} />
             </div>
             <h3>Verificat!</h3>
-            <p>Redirigint al grup de WhatsApp...</p>
+            {whatsappLink ? (
+              <p>Redirigint al grup de WhatsApp...</p>
+            ) : (
+              <p>Registre completat! El teu territori encara no té grup configurat.</p>
+            )}
           </div>
         )}
       </div>

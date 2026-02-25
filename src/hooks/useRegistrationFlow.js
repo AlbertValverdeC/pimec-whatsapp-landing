@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from 'react'
 import { sendOtp, verifyOtp } from '../services/mockOtp'
+import { db } from '../services/mockDb'
 
 function lockBody() {
   const scrollY = window.scrollY
@@ -26,12 +27,14 @@ export default function useRegistrationFlow() {
   const [formData, setFormData] = useState({ name: '', company: '', territory: '', phone: '', email: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState(null)
+  const [whatsappLink, setWhatsappLink] = useState(null)
   const selectedTopicsRef = useRef([])
 
   const openModal = useCallback((topics = []) => {
     selectedTopicsRef.current = topics
     setStep('form')
     setError(null)
+    setWhatsappLink(null)
     setIsOpen(true)
     lockBody()
   }, [])
@@ -43,6 +46,7 @@ export default function useRegistrationFlow() {
       setStep('form')
       setFormData({ name: '', company: '', territory: '', phone: '', email: '' })
       setError(null)
+      setWhatsappLink(null)
     }, 300)
   }, [])
 
@@ -60,18 +64,33 @@ export default function useRegistrationFlow() {
     }
   }, [])
 
-  // Returns a promise that rejects on error — OtpInput handles the error UI itself
   const submitOtp = useCallback(async (code) => {
     await verifyOtp(formData.phone, code)
+
+    const territory = await db.territories.getByName(formData.territory)
+
+    if (territory) {
+      await db.registrations.insert({
+        name: formData.name,
+        company: formData.company,
+        territory_id: territory.id,
+        phone: formData.phone,
+        email: formData.email,
+        topics: selectedTopicsRef.current,
+        consent: true,
+      })
+      setWhatsappLink(territory.whatsapp_link)
+    }
+
     setStep('success')
-  }, [formData.phone])
+  }, [formData])
 
   const resendOtp = useCallback(async () => {
     await sendOtp(formData.phone)
   }, [formData.phone])
 
   return {
-    isOpen, step, formData, isSubmitting, error,
+    isOpen, step, formData, isSubmitting, error, whatsappLink,
     openModal, closeModal, submitForm, submitOtp, resendOtp,
   }
 }

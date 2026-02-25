@@ -1,5 +1,3 @@
-export const WHATSAPP_LINK = 'https://chat.whatsapp.com/DIV3azgeD8X0DNg2fc195T'
-
 export const PERKS = [
   { emoji: '🍻', title: 'Birres & Networking', desc: 'Trobades informals cada mes' },
   { emoji: '🏢', title: 'Visites a empreses', desc: 'Accés a empreses inspiradores' },

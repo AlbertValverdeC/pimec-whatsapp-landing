@@ -1,7 +1,7 @@
 import { QRCodeSVG } from 'qrcode.react'
 import s from './DesktopGate.module.css'
 
-const SITE_URL = 'https://pimec-joves-community.netlify.app'
+const SITE_URL = 'https://pimec-whatsapp-landing.vercel.app'
 
 export default function DesktopGate() {
   return (
@@ -9,8 +9,7 @@ export default function DesktopGate() {
       <div className={s.phone}>
         <div className={s.notch} />
         <div className={s.screen}>
-          <div className={s.logo}>pimec</div>
-          <p className={s.text}>joves</p>
+          <img src="/logo.jpg" alt="PIMEC Joves" className={s.logo} />
         </div>
       </div>
       <h1 className={s.title}>Obre això des del mòbil</h1>

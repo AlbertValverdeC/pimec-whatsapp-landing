@@ -41,16 +41,8 @@
 }
 
 .logo {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--white);
-}
-
-.screen p {
-  font-size: 0.55rem;
-  color: var(--pi-apricot);
-  font-weight: 500;
+  width: 54px;
+  filter: invert(1);
 }
 
 .title {
